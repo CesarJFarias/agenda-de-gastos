@@ -16,7 +16,7 @@ export function ExpenseDistribution({ metrics }) {
 
   return (
     <section
-      id="seccion-analisis-graficos"
+      id="seccion-analisis"
       className="scroll-mt-32 sm:scroll-mt-36 flex flex-col p-6 rounded-2xl bg-surface-container-lowest shadow-sm gap-5"
     >
       <div className="flex items-center justify-between">

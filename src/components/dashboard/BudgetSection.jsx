@@ -204,3 +204,4 @@ export function BudgetSection({ metrics }) {
     </section>
   );
 }
+

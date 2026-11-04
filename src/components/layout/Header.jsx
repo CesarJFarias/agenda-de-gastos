@@ -2,10 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { getCurrentMonthYear } from '../../utils/formatters';
 
 const NAV_ITEMS = [
-  { id: 'panel-general', label: 'Panel General', targetId: 'seccion-panel-general' },
-  { id: 'analisis-y-graficos', label: 'Análisis & Gráficos', targetId: 'seccion-analisis-graficos' },
-  { id: 'presupuestos', label: 'Presupuestos', targetId: 'seccion-presupuestos' },
-  { id: 'historial', label: 'Historial', targetId: 'seccion-historial' },
+  {
+    id: 'panel-general',
+    label: 'Panel General',
+    mobileLabel: 'General',
+    targetId: 'seccion-panel-general',
+  },
+  {
+    id: 'analisis',
+    label: 'Análisis',
+    mobileLabel: 'Análisis',
+    targetId: 'seccion-analisis',
+  },
+  {
+    id: 'presupuestos',
+    label: 'Presupuestos',
+    mobileLabel: 'Presupuestos',
+    targetId: 'seccion-presupuestos',
+  },
+  {
+    id: 'historial',
+    label: 'Historial',
+    mobileLabel: 'Historial',
+    targetId: 'seccion-historial',
+  },
 ];
 
 export function Header({ onExportCSV, isCloudActive }) {
@@ -21,7 +41,7 @@ export function Header({ onExportCSV, isCloudActive }) {
     }
   };
 
-  // Observador para actualizar la pestaña activa mientras el usuario hace scroll
+  // Observador para sincronizar la pestaña activa según el scroll del usuario
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
@@ -118,28 +138,27 @@ export function Header({ onExportCSV, isCloudActive }) {
           </div>
         </div>
 
-        {/* Navigation Tabs (Horizontal Scrollable on Mobile) */}
-        <div className="w-full overflow-x-auto no-scrollbar">
-          <nav className="flex items-center gap-1 p-1 rounded-xl bg-surface-container-low/70 w-max">
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeTab === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleScrollToSection(item.targetId, item.id)}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                    isActive
-                      ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                      : 'text-on-surface-variant hover:text-on-surface'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </nav>
-        </div>
+        {/* Navigation Tabs Distribución Óptima Mobile (Grid 4 columnas sin necesidad de deslizar) */}
+        <nav className="grid grid-cols-4 w-full p-1 rounded-xl bg-surface-container-low/70 sm:w-fit sm:flex sm:items-center sm:gap-1">
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleScrollToSection(item.targetId, item.id)}
+                className={`w-full sm:w-auto px-1 sm:px-3 py-1.5 sm:py-1 rounded-lg text-[11px] sm:text-xs transition-all text-center cursor-pointer truncate ${
+                  isActive
+                    ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)] font-bold'
+                    : 'text-on-surface-variant hover:text-on-surface font-medium'
+                }`}
+              >
+                <span className="sm:hidden">{item.mobileLabel}</span>
+                <span className="hidden sm:inline">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
       </div>
     </header>
   );
