@@ -15,7 +15,10 @@ export function ExpenseDistribution({ metrics }) {
     .slice(0, 4);
 
   return (
-    <section className="flex flex-col p-6 rounded-2xl bg-surface-container-lowest shadow-sm gap-5">
+    <section
+      id="seccion-analisis-graficos"
+      className="scroll-mt-32 sm:scroll-mt-36 flex flex-col p-6 rounded-2xl bg-surface-container-lowest shadow-sm gap-5"
+    >
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-semibold text-base sm:text-lg text-on-surface">

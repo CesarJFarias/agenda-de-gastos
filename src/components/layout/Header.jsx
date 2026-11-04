@@ -1,9 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getCurrentMonthYear } from '../../utils/formatters';
+
+const NAV_ITEMS = [
+  { id: 'panel-general', label: 'Panel General', targetId: 'seccion-panel-general' },
+  { id: 'analisis-y-graficos', label: 'Análisis & Gráficos', targetId: 'seccion-analisis-graficos' },
+  { id: 'presupuestos', label: 'Presupuestos', targetId: 'seccion-presupuestos' },
+  { id: 'historial', label: 'Historial', targetId: 'seccion-historial' },
+];
 
 export function Header({ onExportCSV, isCloudActive }) {
   const [activeTab, setActiveTab] = useState('panel-general');
   const currentMonthYear = getCurrentMonthYear();
+
+  // Desplazamiento suave y actualización de pestaña activa
+  const handleScrollToSection = (targetId, id) => {
+    setActiveTab(id);
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Observador para actualizar la pestaña activa mientras el usuario hace scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+        const item = NAV_ITEMS[i];
+        const el = document.getElementById(item.targetId);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveTab(item.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-xl border-b border-surface-container/60 shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
@@ -83,54 +121,23 @@ export function Header({ onExportCSV, isCloudActive }) {
         {/* Navigation Tabs (Horizontal Scrollable on Mobile) */}
         <div className="w-full overflow-x-auto no-scrollbar">
           <nav className="flex items-center gap-1 p-1 rounded-xl bg-surface-container-low/70 w-max">
-            <button
-              type="button"
-              onClick={() => setActiveTab('panel-general')}
-              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                activeTab === 'panel-general'
-                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              Panel General
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('analisis-y-graficos')}
-              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                activeTab === 'analisis-y-graficos'
-                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              Análisis & Gráficos
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('presupuestos')}
-              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                activeTab === 'presupuestos'
-                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              Presupuestos
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setActiveTab('historial');
-                const el = document.getElementById('seccion-historial');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                activeTab === 'historial'
-                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              Historial
-            </button>
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleScrollToSection(item.targetId, item.id)}
+                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                    isActive
+                      ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
+                      : 'text-on-surface-variant hover:text-on-surface'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </nav>
         </div>
       </div>
