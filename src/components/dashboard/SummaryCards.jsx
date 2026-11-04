@@ -105,7 +105,7 @@ export function SummaryCards({ metrics }) {
               {incomeCount} {incomeCount === 1 ? 'abono computado' : 'abonos computados'}
             </span>
           </div>
-          <span className="text-[11px] px-2 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container font-semibold">
+          <span className="inline-flex items-center justify-center text-center text-[11px] px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container font-semibold leading-normal">
             100% cobrado
           </span>
         </div>
@@ -138,7 +138,7 @@ export function SummaryCards({ metrics }) {
               {expenseRatio.toFixed(1)}% del total ingresado
             </span>
           </div>
-          <span className="text-[11px] text-tertiary font-semibold">
+          <span className="inline-flex items-center justify-center text-center text-[11px] px-2.5 py-0.5 rounded-full bg-tertiary-fixed/40 text-tertiary font-semibold leading-normal">
             {expenseCount} {expenseCount === 1 ? 'transacción' : 'transacciones'}
           </span>
         </div>
@@ -162,7 +162,7 @@ export function SummaryCards({ metrics }) {
             <span className="text-2xl sm:text-3xl text-on-surface font-bold tracking-tight">
               {savingsRate.toFixed(1)}%
             </span>
-            <span className="text-xs text-secondary font-semibold">
+            <span className="inline-flex items-center justify-center text-center text-[11px] px-2 py-0.5 rounded-full bg-secondary-container/30 text-secondary font-semibold leading-normal">
               {savingsStatus}
             </span>
           </div>

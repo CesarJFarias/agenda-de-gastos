@@ -60,7 +60,7 @@ export function Dashboard() {
                   <span className="text-xs uppercase tracking-wider text-primary font-bold">
                     Resumen Financiero Consolidado
                   </span>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] bg-secondary-container/40 text-on-secondary-container font-semibold">
+                  <span className="inline-flex items-center justify-center text-center px-2.5 py-0.5 rounded-full text-[11px] bg-secondary-container/40 text-on-secondary-container font-semibold leading-normal">
                     Tiempo real
                   </span>
                 </div>

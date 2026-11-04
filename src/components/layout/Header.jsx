@@ -129,12 +129,14 @@ export function Header({ onExportCSV, isCloudActive }) {
               <span className="hidden sm:inline">Exportar CSV</span>
             </button>
 
+            {/* Botón de perfil/avatar reservado para futura actualización con Supabase Auth
             <div
               className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm shrink-0"
               title="Usuario activo"
             >
               <span className="material-symbols-outlined text-[18px]">person</span>
             </div>
+            */}
           </div>
         </div>
 

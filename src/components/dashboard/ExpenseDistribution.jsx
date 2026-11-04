@@ -28,7 +28,7 @@ export function ExpenseDistribution({ metrics }) {
             Proporción respecto al total ingresado
           </p>
         </div>
-        <span className="px-2.5 py-1 rounded-full text-[11px] bg-surface-container text-on-surface-variant font-semibold">
+        <span className="inline-flex items-center justify-center text-center px-2.5 py-0.5 rounded-full text-[11px] bg-surface-container text-on-surface-variant font-semibold leading-normal">
           {currentMonth}
         </span>
       </div>

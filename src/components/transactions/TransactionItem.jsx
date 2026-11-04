@@ -30,7 +30,7 @@ export function TransactionItem({ transaction, onDelete }) {
                 {transaction.description}
               </span>
               <span
-                className={`hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold shrink-0 ${
+                className={`hidden sm:inline-flex items-center justify-center text-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold shrink-0 leading-normal ${
                   isIncome
                     ? 'bg-secondary-container/50 text-on-secondary-container'
                     : 'bg-tertiary-fixed text-on-tertiary-fixed'
@@ -67,7 +67,7 @@ export function TransactionItem({ transaction, onDelete }) {
       <div className="flex sm:hidden items-center justify-between pt-1.5 border-t border-surface-container-high/40 pl-12">
         <div className="flex items-center gap-2 text-[11px] text-on-surface-variant flex-wrap">
           <span
-            className={`px-2 py-0.5 rounded-md font-semibold text-[10px] ${
+            className={`inline-flex items-center justify-center text-center px-2 py-0.5 rounded-md font-semibold text-[10px] leading-normal ${
               isIncome
                 ? 'bg-secondary-container/50 text-on-secondary-container'
                 : 'bg-tertiary-fixed text-on-tertiary-fixed'

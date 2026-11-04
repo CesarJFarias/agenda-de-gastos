@@ -47,7 +47,7 @@ export function BudgetSection({ metrics }) {
               <h2 className="text-base sm:text-lg font-bold text-on-surface tracking-tight">
                 Gestión de Presupuestos
               </h2>
-              <span className="px-2 py-0.5 rounded-full text-[11px] bg-primary-fixed/40 text-on-primary-fixed-variant font-semibold">
+              <span className="inline-flex items-center justify-center text-center px-2.5 py-0.5 rounded-full text-[11px] bg-primary-fixed/40 text-on-primary-fixed-variant font-semibold leading-normal">
                 {currentMonth}
               </span>
             </div>
