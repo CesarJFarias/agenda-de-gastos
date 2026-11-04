@@ -6,25 +6,23 @@ export function Header({ onExportCSV, isCloudActive }) {
   const currentMonthYear = getCurrentMonthYear();
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-      <div className="h-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between pt-3 pb-2">
-        <div className="flex items-center justify-between gap-4">
+    <header className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-xl border-b border-surface-container/60 shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col gap-2">
+        <div className="flex items-center justify-between gap-3">
           {/* Logo & Status */}
-          <div className="flex items-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center shadow-[0_2px_8px_rgba(79,70,229,0.25)]">
-                <span className="material-symbols-outlined text-on-primary text-[20px]">
-                  account_balance_wallet
-                </span>
-              </div>
-              <span className="font-bold text-lg sm:text-xl text-on-surface tracking-tight">
-                Mi Control Financiero
+          <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary-container flex items-center justify-center shadow-[0_2px_8px_rgba(79,70,229,0.25)] shrink-0">
+              <span className="material-symbols-outlined text-on-primary text-[18px] sm:text-[20px]">
+                account_balance_wallet
               </span>
             </div>
+            <span className="font-bold text-base sm:text-xl text-on-surface tracking-tight truncate">
+              Mi Control Financiero
+            </span>
 
             {/* Cloud Status Indicator */}
             <div
-              className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-container-low"
+              className="hidden md:flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-container-low shrink-0"
               title={
                 isCloudActive
                   ? 'Sincronizado activamente con Supabase Cloud'
@@ -48,13 +46,13 @@ export function Header({ onExportCSV, isCloudActive }) {
                   isCloudActive ? 'text-secondary' : 'text-amber-700'
                 }`}
               >
-                {isCloudActive ? 'Nube activa (Supabase)' : 'Modo local activo'}
+                {isCloudActive ? 'Nube activa' : 'Modo local'}
               </span>
             </div>
           </div>
 
           {/* Top Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface">
               <span className="material-symbols-outlined text-[18px] text-on-surface-variant">
                 calendar_today
@@ -65,7 +63,7 @@ export function Header({ onExportCSV, isCloudActive }) {
             <button
               onClick={onExportCSV}
               type="button"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:bg-surface-container-low transition-colors text-xs font-semibold cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:bg-surface-container-low transition-colors text-xs font-semibold cursor-pointer"
             >
               <span className="material-symbols-outlined text-[18px] text-on-surface-variant">
                 file_download
@@ -74,7 +72,7 @@ export function Header({ onExportCSV, isCloudActive }) {
             </button>
 
             <div
-              className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm"
+              className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm shrink-0"
               title="Usuario activo"
             >
               <span className="material-symbols-outlined text-[18px]">person</span>
@@ -82,57 +80,59 @@ export function Header({ onExportCSV, isCloudActive }) {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
-        <nav className="flex items-center gap-1 p-1 rounded-xl bg-surface-container-low/70 w-fit">
-          <button
-            type="button"
-            onClick={() => setActiveTab('panel-general')}
-            className={`px-3.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-              activeTab === 'panel-general'
-                ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                : 'text-on-surface-variant hover:text-on-surface'
-            }`}
-          >
-            Panel General
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab('analisis-y-graficos')}
-            className={`px-3.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-              activeTab === 'analisis-y-graficos'
-                ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                : 'text-on-surface-variant hover:text-on-surface'
-            }`}
-          >
-            Análisis & Gráficos
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab('presupuestos')}
-            className={`px-3.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-              activeTab === 'presupuestos'
-                ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                : 'text-on-surface-variant hover:text-on-surface'
-            }`}
-          >
-            Presupuestos
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setActiveTab('historial');
-              const el = document.getElementById('seccion-historial');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className={`px-3.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-              activeTab === 'historial'
-                ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
-                : 'text-on-surface-variant hover:text-on-surface'
-            }`}
-          >
-            Historial
-          </button>
-        </nav>
+        {/* Navigation Tabs (Horizontal Scrollable on Mobile) */}
+        <div className="w-full overflow-x-auto no-scrollbar">
+          <nav className="flex items-center gap-1 p-1 rounded-xl bg-surface-container-low/70 w-max">
+            <button
+              type="button"
+              onClick={() => setActiveTab('panel-general')}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                activeTab === 'panel-general'
+                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              Panel General
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('analisis-y-graficos')}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                activeTab === 'analisis-y-graficos'
+                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              Análisis & Gráficos
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('presupuestos')}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                activeTab === 'presupuestos'
+                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              Presupuestos
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('historial');
+                const el = document.getElementById('seccion-historial');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                activeTab === 'historial'
+                  ? 'bg-surface-container-lowest text-primary shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              Historial
+            </button>
+          </nav>
+        </div>
       </div>
     </header>
   );

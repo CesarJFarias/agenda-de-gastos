@@ -134,3 +134,4 @@ export function ExpenseDistribution({ metrics }) {
     </section>
   );
 }
+

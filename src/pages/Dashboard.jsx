@@ -33,7 +33,7 @@ export function Dashboard() {
       />
 
       {/* Contenido Principal con padding-top para compensar el header fijo */}
-      <main className="w-full pt-32 pb-12 bg-gradient-to-b from-surface via-surface-container-low/40 to-surface flex-1">
+      <main className="w-full pt-32 sm:pt-36 pb-12 bg-gradient-to-b from-surface via-surface-container-low/40 to-surface flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Mensaje de Error si ocurre */}
           {error && (
