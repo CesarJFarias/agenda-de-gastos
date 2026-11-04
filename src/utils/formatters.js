@@ -1,24 +1,72 @@
 /**
- * Formatea un número a moneda (USD con formato regional).
+ * Formatea un número a moneda estilo fintech internacional (US$ X.XXX,XX).
  */
 export const formatMoney = (amount) => {
-  return new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'USD',
+  const numeric = Number(amount) || 0;
+  const formatted = new Intl.NumberFormat('es-ES', {
     minimumFractionDigits: 2,
-  }).format(amount);
+    maximumFractionDigits: 2,
+  }).format(Math.abs(numeric));
+
+  return `US$ ${formatted}`;
 };
 
 /**
- * Obtiene la fecha actual formateada en español (ej: "03 nov 2026").
+ * Obtiene la fecha actual en formato ISO (YYYY-MM-DD).
  */
-export const getFormattedToday = () => {
+export const getTodayISODate = () => {
   const now = new Date();
-  return now.toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+/**
+ * Formatea una fecha ISO (YYYY-MM-DD) a formato legible en español (ej: "03 nov 2026").
+ */
+export const formatDisplayDate = (isoOrTextDate) => {
+  if (!isoOrTextDate) return '';
+  if (isoOrTextDate.includes('-') && isoOrTextDate.length === 10) {
+    const [y, m, d] = isoOrTextDate.split('-');
+    const dateObj = new Date(Number(y), Number(m) - 1, Number(d));
+    return dateObj.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  }
+  return isoOrTextDate;
+};
+
+/**
+ * Obtiene el nombre del mes y año actual (ej: "Noviembre 2026").
+ */
+export const getCurrentMonthYear = () => {
+  const now = new Date();
+  const month = now.toLocaleDateString('es-ES', { month: 'long' });
+  const capitalized = month.charAt(0).toUpperCase() + month.slice(1);
+  return `${capitalized} ${now.getFullYear()}`;
+};
+
+/**
+ * Devuelve el icono de Material Symbols según la categoría y tipo.
+ */
+export const getCategoryIcon = (category, type) => {
+  const map = {
+    'Sueldo/Trabajo': 'work',
+    'Ocio': 'movie',
+    'Ocio & Entretenimiento': 'movie',
+    'Alimentación': 'restaurant',
+    'Servicios': 'receipt_long',
+    'Servicios Básicos': 'receipt_long',
+    'Vivienda': 'home',
+    'Transporte': 'directions_car',
+    'Inversiones': 'trending_up',
+    'Salud': 'medical_services',
+    'General': type === 'ingreso' ? 'payments' : 'receipt',
+  };
+  return map[category] || (type === 'ingreso' ? 'payments' : 'receipt_long');
 };
 
 /**
@@ -26,7 +74,7 @@ export const getFormattedToday = () => {
  */
 export const exportTransactionsToCSV = (transactions) => {
   if (!transactions || transactions.length === 0) {
-    alert('No hay datos para exportar.');
+    alert('No hay movimientos registrados para exportar.');
     return;
   }
 
@@ -42,9 +90,8 @@ export const exportTransactionsToCSV = (transactions) => {
   link.setAttribute('href', url);
   link.setAttribute(
     'download',
-    `mis_finanzas_${new Date().toISOString().slice(0, 10)}.csv`
+    `finanzas_reporte_${new Date().toISOString().slice(0, 10)}.csv`
   );
   link.click();
-  URL.revokeObjectURL(url);
+  URL.revokeObjectURL(link);
 };
-
