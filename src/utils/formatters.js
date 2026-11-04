@@ -1,14 +1,14 @@
 /**
- * Formatea un número a moneda estilo fintech internacional (US$ X.XXX,XX).
+ * Formatea un número a moneda en Pesos Argentinos (ARS X.XXX,XX).
  */
 export const formatMoney = (amount) => {
   const numeric = Number(amount) || 0;
-  const formatted = new Intl.NumberFormat('es-ES', {
+  const formatted = new Intl.NumberFormat('es-AR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(Math.abs(numeric));
 
-  return `US$ ${formatted}`;
+  return `ARS ${formatted}`;
 };
 
 /**

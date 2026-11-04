@@ -26,7 +26,14 @@ export function TransactionForm({ onAdd }) {
     setSubmitting(false);
 
     if (success) {
-      setFeedback(`Registrado con éxito: ${description} (${type === 'ingreso' ? '+' : '-'}US$ ${parseFloat(amount).toFixed(2)})`);
+      setFeedback(
+        `Registrado con éxito: ${description} (${
+          type === 'ingreso' ? '+' : '-'
+        }ARS ${parseFloat(amount).toLocaleString('es-AR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })})`
+      );
       setDescription('');
       setAmount('');
       setCategory('General');
@@ -136,7 +143,7 @@ export function TransactionForm({ onAdd }) {
             </label>
             <div className="relative flex items-center">
               <span className="absolute left-3.5 text-xs text-on-surface-variant font-bold">
-                US$
+                ARS
               </span>
               <input
                 id="inputAmount"
@@ -147,7 +154,7 @@ export function TransactionForm({ onAdd }) {
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="0.00"
                 required
-                className="w-full pl-14 pr-4 py-2.5 rounded-xl bg-surface-container-low/70 focus:bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 text-sm outline-none transition-all shadow-[0_0_0_1px_rgba(0,0,0,0.06)] focus:shadow-[0_0_0_2px_rgba(79,70,229,0.5)] font-bold"
+                className="w-full pl-16 pr-4 py-2.5 rounded-xl bg-surface-container-low/70 focus:bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 text-sm outline-none transition-all shadow-[0_0_0_1px_rgba(0,0,0,0.06)] focus:shadow-[0_0_0_2px_rgba(79,70,229,0.5)] font-bold"
               />
             </div>
           </div>
