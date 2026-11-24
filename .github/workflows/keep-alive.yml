@@ -5,15 +5,20 @@ on:
     - cron: '0 12 */3 * *'
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   ping:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Consultar tabla transactions
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
+          : "${SUPABASE_URL:?falta el secret SUPABASE_URL}"
+          : "${SUPABASE_ANON_KEY:?falta el secret SUPABASE_ANON_KEY}"
           curl --fail --silent --show-error \
             -H "apikey: $SUPABASE_ANON_KEY" \
             -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
