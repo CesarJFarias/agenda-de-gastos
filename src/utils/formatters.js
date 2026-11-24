@@ -1,6 +1,3 @@
-/**
- * Formatea un número a moneda en Pesos Argentinos (ARS X.XXX,XX).
- */
 export const formatMoney = (amount) => {
   const numeric = Number(amount) || 0;
   const formatted = new Intl.NumberFormat('es-AR', {
@@ -11,9 +8,6 @@ export const formatMoney = (amount) => {
   return `ARS ${formatted}`;
 };
 
-/**
- * Obtiene la fecha actual en formato ISO (YYYY-MM-DD).
- */
 export const getTodayISODate = () => {
   const now = new Date();
   const year = now.getFullYear();
@@ -22,9 +16,6 @@ export const getTodayISODate = () => {
   return `${year}-${month}-${day}`;
 };
 
-/**
- * Formatea una fecha ISO (YYYY-MM-DD) a formato legible en español (ej: "03 nov 2026").
- */
 export const formatDisplayDate = (isoOrTextDate) => {
   if (!isoOrTextDate) return '';
   if (isoOrTextDate.includes('-') && isoOrTextDate.length === 10) {
@@ -39,9 +30,6 @@ export const formatDisplayDate = (isoOrTextDate) => {
   return isoOrTextDate;
 };
 
-/**
- * Obtiene el nombre del mes y año actual (ej: "Noviembre 2026").
- */
 export const getCurrentMonthYear = () => {
   const now = new Date();
   const month = now.toLocaleDateString('es-ES', { month: 'long' });
@@ -49,49 +37,24 @@ export const getCurrentMonthYear = () => {
   return `${capitalized} ${now.getFullYear()}`;
 };
 
-/**
- * Devuelve el icono de Material Symbols según la categoría y tipo.
- */
-export const getCategoryIcon = (category, type) => {
-  const map = {
-    'Sueldo/Trabajo': 'work',
-    'Ocio': 'movie',
-    'Ocio & Entretenimiento': 'movie',
-    'Alimentación': 'restaurant',
-    'Servicios': 'receipt_long',
-    'Servicios Básicos': 'receipt_long',
-    'Vivienda': 'home',
-    'Transporte': 'directions_car',
-    'Inversiones': 'trending_up',
-    'Salud': 'medical_services',
-    'General': type === 'ingreso' ? 'payments' : 'receipt',
-  };
-  return map[category] || (type === 'ingreso' ? 'payments' : 'receipt_long');
-};
+const escapeCsv = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
 
-/**
- * Exporta un arreglo de transacciones a un archivo CSV descargable.
- */
 export const exportTransactionsToCSV = (transactions) => {
-  if (!transactions || transactions.length === 0) {
-    alert('No hay movimientos registrados para exportar.');
-    return;
-  }
+  if (!transactions.length) return;
 
-  let csv = 'ID,Tipo,Descripcion,Monto,Categoria,Fecha\n';
-  transactions.forEach((t) => {
-    const cleanDesc = String(t.description || '').replace(/"/g, '""');
-    csv += `${t.id},"${t.type}","${cleanDesc}",${t.amount},"${t.category}","${t.date}"\n`;
-  });
+  const header = ['ID', 'Tipo', 'Descripcion', 'Monto', 'Categoria', 'Fecha'];
+  const rows = transactions.map((t) =>
+    [t.id, escapeCsv(t.type), escapeCsv(t.description), t.amount, escapeCsv(t.category), escapeCsv(t.date)].join(',')
+  );
+  const csv = [header.join(','), ...rows].join('\n') + '\n';
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
-  link.setAttribute('href', url);
-  link.setAttribute(
-    'download',
-    `finanzas_reporte_${new Date().toISOString().slice(0, 10)}.csv`
-  );
+  link.href = url;
+  link.download = `finanzas_reporte_${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(link);
   link.click();
-  URL.revokeObjectURL(link);
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 };

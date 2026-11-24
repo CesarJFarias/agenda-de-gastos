@@ -20,33 +20,27 @@ const saveLocalTransactions = (transactions) => {
   }
 };
 
-/**
- * Capa de servicio para gestionar transacciones.
- * Si Supabase está configurado en `.env`, sincroniza con la base de datos en la nube.
- * De lo contrario, funciona de manera transparente usando LocalStorage.
- */
+const isCloud = () => isSupabaseConfigured && Boolean(supabase);
+
 export const transactionService = {
   isCloudActive: isSupabaseConfigured,
 
   async getAll() {
-    if (isSupabaseConfigured && supabase) {
+    if (isCloud()) {
       const { data, error } = await supabase
         .from('transactions')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      return data.map((item) => ({
-        ...item,
-        amount: Number(item.amount),
-      }));
+      return data.map((item) => ({ ...item, amount: Number(item.amount) }));
     }
 
     return getLocalTransactions();
   },
 
   async create(transactionData) {
-    if (isSupabaseConfigured && supabase) {
+    if (isCloud()) {
       const { data, error } = await supabase
         .from('transactions')
         .insert([transactionData])
@@ -54,10 +48,7 @@ export const transactionService = {
         .single();
 
       if (error) throw error;
-      return {
-        ...data,
-        amount: Number(data.amount),
-      };
+      return { ...data, amount: Number(data.amount) };
     }
 
     const newTx = {
@@ -65,27 +56,18 @@ export const transactionService = {
       ...transactionData,
       created_at: new Date().toISOString(),
     };
-    const current = getLocalTransactions();
-    const updated = [newTx, ...current];
-    saveLocalTransactions(updated);
+    saveLocalTransactions([newTx, ...getLocalTransactions()]);
     return newTx;
   },
 
   async remove(id) {
-    if (isSupabaseConfigured && supabase) {
-      const { error } = await supabase
-        .from('transactions')
-        .delete()
-        .eq('id', id);
-
+    if (isCloud()) {
+      const { error } = await supabase.from('transactions').delete().eq('id', id);
       if (error) throw error;
       return true;
     }
 
-    const current = getLocalTransactions();
-    const updated = current.filter((t) => t.id !== id);
-    saveLocalTransactions(updated);
+    saveLocalTransactions(getLocalTransactions().filter((t) => t.id !== id));
     return true;
   },
 };
-

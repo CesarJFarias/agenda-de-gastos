@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { formatMoney, getCurrentMonthYear } from '../../utils/formatters';
 
-const DEFAULT_BUDGET = 350000;
-
-export function BudgetSection({ metrics }) {
-  const [monthlyBudget, setMonthlyBudget] = useState(() => {
-    const saved = localStorage.getItem('user_monthly_budget');
-    return saved ? Number(saved) : DEFAULT_BUDGET;
-  });
+export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempBudget, setTempBudget] = useState(monthlyBudget);
 
@@ -21,10 +15,7 @@ export function BudgetSection({ metrics }) {
 
   const handleSaveBudget = (e) => {
     e.preventDefault();
-    const val = parseFloat(tempBudget);
-    if (!isNaN(val) && val > 0) {
-      setMonthlyBudget(val);
-      localStorage.setItem('user_monthly_budget', String(val));
+    if (onSaveBudget(tempBudget)) {
       setIsEditing(false);
     }
   };

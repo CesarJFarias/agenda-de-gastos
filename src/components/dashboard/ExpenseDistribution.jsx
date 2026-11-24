@@ -1,5 +1,6 @@
 import React from 'react';
-import { formatMoney, getCurrentMonthYear, getCategoryIcon } from '../../utils/formatters';
+import { formatMoney, getCurrentMonthYear } from '../../utils/formatters';
+import { getCategoryIcon } from '../../constants/categories';
 
 export function ExpenseDistribution({ metrics }) {
   const { income, expense, expenseRatio, categoryList } = metrics;

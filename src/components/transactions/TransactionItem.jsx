@@ -1,5 +1,6 @@
 import React from 'react';
-import { formatMoney, getCategoryIcon } from '../../utils/formatters';
+import { formatMoney } from '../../utils/formatters';
+import { getCategoryIcon } from '../../constants/categories';
 
 export function TransactionItem({ transaction, onDelete }) {
   const isIncome = transaction.type === 'ingreso';

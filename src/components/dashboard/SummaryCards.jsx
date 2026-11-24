@@ -47,36 +47,13 @@ export function SummaryCards({ metrics }) {
             {formatMoney(balance)}
           </div>
         </div>
-        <div className="mt-4 pt-3 flex items-center justify-between text-secondary">
-          <div className="flex items-center gap-1.5">
-            <span className="material-symbols-outlined text-[18px]">
-              {isHealthyBalance ? 'trending_up' : 'trending_down'}
-            </span>
-            <span className="text-xs font-semibold">
-              {isHealthyBalance ? '+12.4%' : '-5.2%'}
-            </span>
-            <span className="text-[11px] text-on-surface-variant ml-1 font-normal">
-              vs ciclo anterior
-            </span>
-          </div>
-          {/* Micro Sparkline SVG */}
-          <svg
-            className="w-16 h-5 text-secondary overflow-visible"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 60 20"
-          >
-            <path
-              d={
-                isHealthyBalance
-                  ? 'M1 16L15 12L28 15L42 7L59 2'
-                  : 'M1 4L15 8L28 6L42 14L59 18'
-              }
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-            />
-          </svg>
+        <div className="mt-4 pt-3 flex items-center gap-1.5 text-secondary">
+          <span className="material-symbols-outlined text-[18px]">
+            {isHealthyBalance ? 'trending_up' : 'trending_down'}
+          </span>
+          <span className="text-[11px] text-on-surface-variant font-normal">
+            {isHealthyBalance ? 'Saldo positivo' : 'Saldo negativo'}
+          </span>
         </div>
       </div>
 
@@ -98,15 +75,10 @@ export function SummaryCards({ metrics }) {
             {formatMoney(income)}
           </div>
         </div>
-        <div className="mt-4 pt-3 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <span className="inline-flex w-2 h-2 rounded-full bg-secondary"></span>
-            <span className="text-xs text-on-surface-variant">
-              {incomeCount} {incomeCount === 1 ? 'abono computado' : 'abonos computados'}
-            </span>
-          </div>
-          <span className="inline-flex items-center justify-center text-center text-[11px] px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container font-semibold leading-normal">
-            100% cobrado
+        <div className="mt-4 pt-3 flex items-center gap-1.5">
+          <span className="inline-flex w-2 h-2 rounded-full bg-secondary"></span>
+          <span className="text-xs text-on-surface-variant">
+            {incomeCount} {incomeCount === 1 ? 'abono computado' : 'abonos computados'}
           </span>
         </div>
       </div>
@@ -175,7 +147,7 @@ export function SummaryCards({ metrics }) {
             ></div>
           </div>
           <span className="text-[11px] text-on-surface-variant">
-            Presupuesto restante protegido
+            Porcentaje del ingreso que queda disponible
           </span>
         </div>
       </div>
