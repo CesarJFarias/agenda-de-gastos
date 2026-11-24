@@ -2,15 +2,8 @@ import React from 'react';
 import { formatMoney } from '@/shared/utils/formatters';
 
 export function SummaryCards({ metrics }) {
-  const {
-    balance,
-    income,
-    expense,
-    incomeCount,
-    expenseCount,
-    savingsRate,
-    expenseRatio,
-  } = metrics;
+  const { balance, income, expense, incomeCount, expenseCount, savingsRate, expenseRatio } =
+    metrics;
 
   const isHealthyBalance = balance >= 0;
 
@@ -18,10 +11,10 @@ export function SummaryCards({ metrics }) {
     savingsRate >= 70
       ? 'Excelente'
       : savingsRate >= 40
-      ? 'Óptimo'
-      : savingsRate > 0
-      ? 'Moderado'
-      : 'En observación';
+        ? 'Óptimo'
+        : savingsRate > 0
+          ? 'Moderado'
+          : 'En observación';
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -103,9 +96,7 @@ export function SummaryCards({ metrics }) {
         </div>
         <div className="mt-4 pt-3 flex items-center justify-between">
           <div className="flex items-center gap-1.5">
-            <span className="material-symbols-outlined text-tertiary text-[16px]">
-              pie_chart
-            </span>
+            <span className="material-symbols-outlined text-tertiary text-[16px]">pie_chart</span>
             <span className="text-xs text-on-surface-variant">
               {expenseRatio.toFixed(1)}% del total ingresado
             </span>
@@ -125,9 +116,7 @@ export function SummaryCards({ metrics }) {
               TASA DE AHORRO
             </span>
             <div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center">
-              <span className="material-symbols-outlined text-primary text-[20px]">
-                savings
-              </span>
+              <span className="material-symbols-outlined text-primary text-[20px]">savings</span>
             </div>
           </div>
           <div className="flex items-baseline gap-2">

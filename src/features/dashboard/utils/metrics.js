@@ -10,8 +10,7 @@ export const calculateMetrics = (transactions) => {
 
   const savingsRate =
     income > 0 ? Math.max(0, Math.min(100, ((income - expense) / income) * 100)) : 0;
-  const expenseRatio =
-    income > 0 ? Math.min(100, (expense / income) * 100) : expense > 0 ? 100 : 0;
+  const expenseRatio = income > 0 ? Math.min(100, (expense / income) * 100) : expense > 0 ? 100 : 0;
 
   const categoryTotals = {};
   transactions.forEach((t) => {

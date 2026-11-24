@@ -22,9 +22,7 @@ export function TransactionList({
       <div className="flex flex-col gap-4 pb-3 sm:pb-4 border-b border-surface-container-low">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
-            <span className="material-symbols-outlined text-primary text-[20px]">
-              history
-            </span>
+            <span className="material-symbols-outlined text-primary text-[20px]">history</span>
           </div>
           <div>
             <h2 className="text-base sm:text-lg font-bold text-on-surface tracking-tight">
@@ -78,9 +76,7 @@ export function TransactionList({
               title="Descargar CSV de la vista actual"
               className="p-2 sm:p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant transition-colors flex items-center justify-center shrink-0 cursor-pointer"
             >
-              <span className="material-symbols-outlined text-[20px]">
-                file_download
-              </span>
+              <span className="material-symbols-outlined text-[20px]">file_download</span>
             </button>
           </div>
         </div>
@@ -102,20 +98,14 @@ export function TransactionList({
                 search_off
               </span>
             </div>
-            <p className="text-sm font-semibold text-on-surface">
-              No se encontraron movimientos
-            </p>
+            <p className="text-sm font-semibold text-on-surface">No se encontraron movimientos</p>
             <p className="text-xs text-on-surface-variant mt-0.5">
               Prueba ajustando los filtros de búsqueda o categoría.
             </p>
           </div>
         ) : (
           transactions.map((t) => (
-            <TransactionItem
-              key={t.id}
-              transaction={t}
-              onDelete={onDelete}
-            />
+            <TransactionItem key={t.id} transaction={t} onDelete={onDelete} />
           ))
         )}
       </div>
@@ -123,9 +113,7 @@ export function TransactionList({
       {/* Footer Audit Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 pt-3 bg-surface-container-low/40 -mx-4 sm:-mx-6 px-4 sm:px-6 -mb-4 sm:-mb-6 py-3 rounded-b-2xl border-t border-surface-container-low text-center sm:text-left">
         <div className="flex items-center gap-1.5 text-[11px] text-on-surface-variant">
-          <span className="material-symbols-outlined text-[16px] text-secondary">
-            cloud_done
-          </span>
+          <span className="material-symbols-outlined text-[16px] text-secondary">cloud_done</span>
           <span>
             {isCloudActive
               ? 'Sincronizado con Supabase PostgreSQL • SSL'

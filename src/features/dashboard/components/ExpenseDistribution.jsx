@@ -11,9 +11,7 @@ export function ExpenseDistribution({ metrics }) {
   const remainingRatio = Math.max(0, 100 - usedRatio);
 
   // Ordenar categorías por monto descendente y tomar hasta 4
-  const topCategories = [...categoryList]
-    .sort((a, b) => b.amount - a.amount)
-    .slice(0, 4);
+  const topCategories = [...categoryList].sort((a, b) => b.amount - a.amount).slice(0, 4);
 
   return (
     <section
@@ -25,9 +23,7 @@ export function ExpenseDistribution({ metrics }) {
           <h3 className="font-semibold text-base sm:text-lg text-on-surface">
             Distribución de Gastos vs Flujo
           </h3>
-          <p className="text-xs text-on-surface-variant">
-            Proporción respecto al total ingresado
-          </p>
+          <p className="text-xs text-on-surface-variant">Proporción respecto al total ingresado</p>
         </div>
         <span className="inline-flex items-center justify-center text-center px-2.5 py-0.5 rounded-full text-[11px] bg-surface-container text-on-surface-variant font-semibold leading-normal">
           {currentMonth}
@@ -38,9 +34,7 @@ export function ExpenseDistribution({ metrics }) {
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between text-xs text-on-surface-variant">
           <span>Capacidad financiera utilizada</span>
-          <span className="font-bold text-on-surface">
-            {usedRatio.toFixed(2)}% del capital
-          </span>
+          <span className="font-bold text-on-surface">{usedRatio.toFixed(2)}% del capital</span>
         </div>
 
         <div className="w-full h-3 bg-surface-container rounded-full overflow-hidden flex">
@@ -99,9 +93,7 @@ export function ExpenseDistribution({ metrics }) {
                         : 'bg-tertiary-fixed/60 text-tertiary'
                     }`}
                   >
-                    <span className="material-symbols-outlined text-[18px]">
-                      {iconName}
-                    </span>
+                    <span className="material-symbols-outlined text-[18px]">{iconName}</span>
                   </div>
                   <div>
                     <span className="text-xs sm:text-sm font-semibold text-on-surface block">
@@ -138,4 +130,3 @@ export function ExpenseDistribution({ metrics }) {
     </section>
   );
 }
-

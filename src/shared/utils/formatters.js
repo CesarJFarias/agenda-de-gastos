@@ -44,7 +44,14 @@ export const exportTransactionsToCSV = (transactions) => {
 
   const header = ['ID', 'Tipo', 'Descripcion', 'Monto', 'Categoria', 'Fecha'];
   const rows = transactions.map((t) =>
-    [t.id, escapeCsv(t.type), escapeCsv(t.description), t.amount, escapeCsv(t.category), escapeCsv(t.date)].join(',')
+    [
+      t.id,
+      escapeCsv(t.type),
+      escapeCsv(t.description),
+      t.amount,
+      escapeCsv(t.category),
+      escapeCsv(t.date),
+    ].join(',')
   );
   const csv = [header.join(','), ...rows].join('\n') + '\n';
 

@@ -104,9 +104,7 @@ export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
           <p className="text-xl sm:text-2xl font-bold text-on-surface mt-2">
             {formatMoney(monthlyBudget)}
           </p>
-          <span className="text-[11px] text-on-surface-variant mt-1">
-            Tope mensual para gastos
-          </span>
+          <span className="text-[11px] text-on-surface-variant mt-1">Tope mensual para gastos</span>
         </div>
 
         {/* Gasto Ejecutado */}
@@ -128,8 +126,8 @@ export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
             isExceeded
               ? 'bg-error-container/40 border-error/20'
               : isWarning
-              ? 'bg-amber-500/10 border-amber-500/20'
-              : 'bg-secondary-container/20 border-secondary-container/40'
+                ? 'bg-amber-500/10 border-amber-500/20'
+                : 'bg-secondary-container/20 border-secondary-container/40'
           }`}
         >
           <span className="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">
@@ -137,29 +135,21 @@ export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
           </span>
           <p
             className={`text-xl sm:text-2xl font-bold mt-2 ${
-              isExceeded
-                ? 'text-error'
-                : isWarning
-                ? 'text-amber-700'
-                : 'text-secondary'
+              isExceeded ? 'text-error' : isWarning ? 'text-amber-700' : 'text-secondary'
             }`}
           >
             {formatMoney(Math.abs(remaining))}
           </p>
           <span
             className={`text-[11px] font-semibold mt-1 ${
-              isExceeded
-                ? 'text-error'
-                : isWarning
-                ? 'text-amber-700'
-                : 'text-secondary'
+              isExceeded ? 'text-error' : isWarning ? 'text-amber-700' : 'text-secondary'
             }`}
           >
             {isExceeded
               ? 'Has superado el límite fijado'
               : isWarning
-              ? 'Atención: cerca del límite'
-              : 'Gasto dentro del rango saludable'}
+                ? 'Atención: cerca del límite'
+                : 'Gasto dentro del rango saludable'}
           </span>
         </div>
       </div>
@@ -168,19 +158,13 @@ export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
       <div className="flex flex-col gap-2 pt-1">
         <div className="flex items-center justify-between text-xs text-on-surface-variant">
           <span>Consumo del presupuesto mensual</span>
-          <span className="font-bold text-on-surface">
-            {percentageSpent.toFixed(1)}% consumido
-          </span>
+          <span className="font-bold text-on-surface">{percentageSpent.toFixed(1)}% consumido</span>
         </div>
 
         <div className="w-full h-3 bg-surface-container rounded-full overflow-hidden">
           <div
             className={`h-full transition-all duration-700 rounded-full ${
-              isExceeded
-                ? 'bg-error'
-                : isWarning
-                ? 'bg-amber-500'
-                : 'bg-secondary'
+              isExceeded ? 'bg-error' : isWarning ? 'bg-amber-500' : 'bg-secondary'
             }`}
             style={{ width: `${Math.min(100, percentageSpent)}%` }}
           ></div>
@@ -195,4 +179,3 @@ export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
     </section>
   );
 }
-

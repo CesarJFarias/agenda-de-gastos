@@ -27,9 +27,9 @@ export function TransactionForm({ onAdd }) {
 
     if (success) {
       setFeedback(
-        `Registrado con éxito: ${description} (${
-          type === 'ingreso' ? '+' : '-'
-        }ARS ${parseFloat(amount).toLocaleString('es-AR', {
+        `Registrado con éxito: ${description} (${type === 'ingreso' ? '+' : '-'}ARS ${parseFloat(
+          amount
+        ).toLocaleString('es-AR', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })})`
@@ -113,9 +113,7 @@ export function TransactionForm({ onAdd }) {
               className="text-xs text-on-surface font-semibold flex items-center justify-between"
             >
               <span>Descripción del movimiento</span>
-              <span className="text-[11px] text-on-surface-variant font-normal">
-                Requerido
-              </span>
+              <span className="text-[11px] text-on-surface-variant font-normal">Requerido</span>
             </label>
             <div className="relative flex items-center">
               <span className="material-symbols-outlined text-[20px] text-on-surface-variant absolute left-3.5 pointer-events-none">
@@ -135,10 +133,7 @@ export function TransactionForm({ onAdd }) {
 
           {/* Amount */}
           <div className="md:col-span-6 flex flex-col gap-1.5">
-            <label
-              htmlFor="inputAmount"
-              className="text-xs text-on-surface font-semibold"
-            >
+            <label htmlFor="inputAmount" className="text-xs text-on-surface font-semibold">
               Monto
             </label>
             <div className="relative flex items-center">
@@ -161,10 +156,7 @@ export function TransactionForm({ onAdd }) {
 
           {/* Category */}
           <div className="md:col-span-6 flex flex-col gap-1.5">
-            <label
-              htmlFor="selectCategory"
-              className="text-xs text-on-surface font-semibold"
-            >
+            <label htmlFor="selectCategory" className="text-xs text-on-surface font-semibold">
               Categoría
             </label>
             <div className="relative flex items-center">
@@ -233,9 +225,7 @@ export function TransactionForm({ onAdd }) {
       {feedback && (
         <div className="mt-4 p-3 rounded-xl bg-secondary-container/40 text-on-secondary-container flex items-center justify-between text-xs animate-fade-in">
           <div className="flex items-center gap-2 font-medium">
-            <span className="material-symbols-outlined text-[18px]">
-              check_circle
-            </span>
+            <span className="material-symbols-outlined text-[18px]">check_circle</span>
             <span>{feedback}</span>
           </div>
           <button

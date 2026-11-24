@@ -19,9 +19,7 @@ export function TransactionItem({ transaction, onDelete }) {
                 : 'bg-tertiary-fixed/60 text-tertiary'
             }`}
           >
-            <span className="material-symbols-outlined text-[18px] sm:text-[20px]">
-              {iconName}
-            </span>
+            <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{iconName}</span>
           </div>
 
           {/* Descripción y Metadatos Desktop */}

@@ -3,7 +3,8 @@ import { transactionService } from '@/features/transactions/services/transaction
 import { formatDisplayDate } from '@/shared/utils/formatters';
 import { calculateMetrics } from '@/features/dashboard/utils/metrics';
 
-const CLOUD_ERROR = 'No se pudieron cargar los movimientos desde la nube. Verifica tu conexión o configuración de Supabase.';
+const CLOUD_ERROR =
+  'No se pudieron cargar los movimientos desde la nube. Verifica tu conexión o configuración de Supabase.';
 const LOCAL_ERROR = 'No se pudieron cargar los movimientos guardados en este navegador.';
 
 export function useTransactions() {

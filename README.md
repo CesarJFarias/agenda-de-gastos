@@ -9,18 +9,21 @@ Aplicación web para la gestión, registro y monitoreo en tiempo real de ingreso
 El proyecto utiliza tecnologías modernas optimizadas para rendimiento, seguridad y experiencia de usuario:
 
 ### Frontend
-* **React 18**: Biblioteca base orientada a componentes modulares, hooks personalizados y renderizado declarativo.
-* **Vite 6**: Herramienta de compilación y empaquetado de alta velocidad para entornos modernos de JavaScript.
-* **Tailwind CSS 3**: Framework de diseño utilitario para interfaces consistentes, responsivas y accesibles.
-* **Font Awesome & Lucide**: Sistema iconográfico para categorización visual de transacciones.
+
+- **React 18**: Biblioteca base orientada a componentes modulares, hooks personalizados y renderizado declarativo.
+- **Vite 6**: Herramienta de compilación y empaquetado de alta velocidad para entornos modernos de JavaScript.
+- **Tailwind CSS 3**: Framework de diseño utilitario para interfaces consistentes, responsivas y accesibles.
+- **Font Awesome & Lucide**: Sistema iconográfico para categorización visual de transacciones.
 
 ### Backend y Persistencia
-* **Supabase (PostgreSQL 15+)**: Plataforma de base de datos relacional administrada con soporte para operaciones CRUD seguras.
-* **Row Level Security (RLS)**: Políticas de seguridad a nivel de fila configuradas en el motor PostgreSQL para el control de acceso a datos.
-* **Capa de Abstracción de Datos (Data Service Layer)**: Patrón de diseño que desacopla la lógica de negocio de la fuente de persistencia, conmutando dinámicamente entre la nube y almacenamiento local de contingencia (`LocalStorage`).
+
+- **Supabase (PostgreSQL 15+)**: Plataforma de base de datos relacional administrada con soporte para operaciones CRUD seguras.
+- **Row Level Security (RLS)**: Políticas de seguridad a nivel de fila configuradas en el motor PostgreSQL para el control de acceso a datos.
+- **Capa de Abstracción de Datos (Data Service Layer)**: Patrón de diseño que desacopla la lógica de negocio de la fuente de persistencia, conmutando dinámicamente entre la nube y almacenamiento local de contingencia (`LocalStorage`).
 
 ### Infraestructura y Despliegue
-* **Vercel**: Plataforma de alojamiento en el borde (Edge Network) con integración continua y despliegue automático desde el repositorio.
+
+- **Vercel**: Plataforma de alojamiento en el borde (Edge Network) con integración continua y despliegue automático desde el repositorio.
 
 ---
 
@@ -49,6 +52,7 @@ La solución adopta una separación clara de responsabilidades:
 ```
 
 ### Flujo de Datos
+
 1. **Captura y Validación**: Los formularios capturan montos numéricos estrictamente positivos, clasificaciones contables predefinidas y descripciones sanitizadas.
 2. **Procesamiento de Métricas**: El hook centralizador calcula de manera reactiva el balance acumulado, total de ingresos y total de egresos en memoria, evitando lecturas redundantes a la base de datos.
 3. **Persistencia Híbrida**: Las peticiones de lectura, escritura y eliminación se canalizan a través del servicio de transacciones. Si la conexión a Supabase se encuentra activa, las operaciones se sincronizan con PostgreSQL; en caso de falta de conectividad o ausencia de configuración remota, el sistema opera de manera ininterrumpida mediante persistencia local del cliente.
@@ -58,9 +62,9 @@ La solución adopta una separación clara de responsabilidades:
 
 ## 3. Seguridad e Integridad
 
-* Las credenciales sensibles de administración (`service_role`) se encuentran estrictamente excluidas de la aplicación cliente.
-* La comunicación con la base de datos se realiza a través de la clave pública anonimizada (`anon key`), sujeta a políticas RLS activas en PostgreSQL.
-* El repositorio mantiene exclusión estricta de variables de entorno mediante `.gitignore`.
+- Las credenciales sensibles de administración (`service_role`) se encuentran estrictamente excluidas de la aplicación cliente.
+- La comunicación con la base de datos se realiza a través de la clave pública anonimizada (`anon key`), sujeta a políticas RLS activas en PostgreSQL.
+- El repositorio mantiene exclusión estricta de variables de entorno mediante `.gitignore`.
 
 ---
 
@@ -68,7 +72,7 @@ La solución adopta una separación clara de responsabilidades:
 
 El diseño actual prevé la integración incremental de los siguientes módulos:
 
-* **Módulo de Autenticación de Usuarios**: Implementación de Supabase Auth (correo/contraseña y proveedores OAuth) con aislamiento estricto de transacciones por `user_id`.
-* **Visualización Gráfica Avanzada**: Integración de gráficos de barras y sectores (Recharts / Chart.js) para análisis de distribución de gastos por categoría y tendencias temporales.
-* **Presupuestos y Alertas**: Configuración de topes de gasto mensuales con indicadores de alerta temprana.
-* **Soporte Multi-moneda**: Conversión y visualización en diferentes divisas con soporte de cotizaciones de referencia.
+- **Módulo de Autenticación de Usuarios**: Implementación de Supabase Auth (correo/contraseña y proveedores OAuth) con aislamiento estricto de transacciones por `user_id`.
+- **Visualización Gráfica Avanzada**: Integración de gráficos de barras y sectores (Recharts / Chart.js) para análisis de distribución de gastos por categoría y tendencias temporales.
+- **Presupuestos y Alertas**: Configuración de topes de gasto mensuales con indicadores de alerta temprana.
+- **Soporte Multi-moneda**: Conversión y visualización en diferentes divisas con soporte de cotizaciones de referencia.

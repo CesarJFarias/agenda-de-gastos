@@ -12,8 +12,15 @@ import { useTransactions } from '@/features/transactions/hooks/useTransactions';
 import { useTransactionFilters } from '@/features/transactions/hooks/useTransactionFilters';
 
 export function Dashboard() {
-  const { transactions, loading, error, metrics, isCloudActive, addTransaction, deleteTransaction } =
-    useTransactions();
+  const {
+    transactions,
+    loading,
+    error,
+    metrics,
+    isCloudActive,
+    addTransaction,
+    deleteTransaction,
+  } = useTransactions();
   const { filter, setFilter, searchQuery, setSearchQuery, filteredTransactions } =
     useTransactionFilters(transactions);
   const { monthlyBudget, updateBudget } = useBudget();
@@ -65,7 +72,9 @@ export function Dashboard() {
                   onClick={() => exportTransactionsToCSV(transactions)}
                   className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-on-surface text-xs font-semibold hover:bg-surface-container-low transition-all shadow-sm cursor-pointer"
                 >
-                  <span className="material-symbols-outlined text-[18px] text-primary">insights</span>
+                  <span className="material-symbols-outlined text-[18px] text-primary">
+                    insights
+                  </span>
                   <span>Exportar Reporte</span>
                 </button>
               </div>

@@ -128,7 +128,6 @@ export function Header({ onExportCSV, isCloudActive }) {
               </span>
               <span className="hidden sm:inline">Exportar CSV</span>
             </button>
-
           </div>
         </div>
 
