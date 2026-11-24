@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatMoney } from '../../utils/formatters';
+import { formatMoney } from '@/shared/utils/formatters';
 
 export function SummaryCards({ metrics }) {
   const {

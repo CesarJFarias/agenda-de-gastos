@@ -1,6 +1,6 @@
 import React from 'react';
 import { TransactionItem } from './TransactionItem';
-import { FILTER_OPTIONS } from '../../constants/categories';
+import { FILTER_OPTIONS } from '@/shared/constants/categories';
 
 export function TransactionList({
   transactions,

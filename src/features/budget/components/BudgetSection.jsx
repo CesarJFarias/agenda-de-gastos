@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatMoney, getCurrentMonthYear } from '../../utils/formatters';
+import { formatMoney, getCurrentMonthYear } from '@/shared/utils/formatters';
 
 export function BudgetSection({ metrics, monthlyBudget, onSaveBudget }) {
   const [isEditing, setIsEditing] = useState(false);

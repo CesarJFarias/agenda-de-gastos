@@ -29,19 +29,23 @@ El proyecto utiliza tecnologías modernas optimizadas para rendimiento, segurida
 La solución adopta una separación clara de responsabilidades:
 
 ```text
+├── .github/workflows/    # CI: ping periódico a Supabase (keep-alive)
 ├── src/
-│   ├── components/       # Componentes de interfaz de usuario reutilizables
-│   │   ├── dashboard/    # Componentes de presentación de métricas y balances
-│   │   ├── layout/       # Estructura general de navegación y encabezados
-│   │   └── transactions/ # Formularios de entrada, filtros y visualización de registros
-│   ├── config/           # Inicialización y validación del cliente de base de datos
-│   ├── constants/        # Entidades fijas (categorías contables, tipos de movimiento)
-│   ├── hooks/            # Hooks de React para encapsulación del estado y cálculos
-│   ├── pages/            # Vistas principales de la aplicación
-│   ├── services/         # Servicios de acceso a datos (comunicación con API/DB)
-│   └── utils/            # Funciones puras de cálculo, formateo monetario y exportación
-├── supabase/             # Definiciones DDL y esquemas SQL de base de datos
-└── vercel.json           # Reglas de enrutamiento y reescritura para producción
+│   ├── features/         # Módulos por funcionalidad (cada uno con sus componentes, hooks y servicios)
+│   │   ├── budget/       # Presupuesto mensual
+│   │   ├── dashboard/    # Métricas y gráficos de resumen
+│   │   └── transactions/ # Alta, listado, filtros y persistencia de movimientos
+│   ├── pages/            # Vistas principales que componen las features
+│   ├── shared/           # Código reutilizable entre features
+│   │   ├── components/   # Layout (encabezado y pie)
+│   │   ├── constants/    # Categorías y tipos de movimiento
+│   │   ├── lib/          # Cliente de Supabase
+│   │   └── utils/        # Formateo de moneda y fechas, exportación CSV
+│   ├── App.jsx           # Raíz de la aplicación
+│   └── main.jsx          # Punto de entrada de React
+├── supabase/             # Esquema SQL de la base de datos
+├── .env.example          # Variables de entorno necesarias (copiar a .env)
+└── vercel.json           # Reglas de reescritura para producción
 ```
 
 ### Flujo de Datos

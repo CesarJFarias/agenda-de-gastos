@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { budgetService } from '../services/budgetService';
+import { budgetService } from '@/features/budget/services/budgetService';
 
 export function useBudget() {
   const [monthlyBudget, setMonthlyBudget] = useState(() => budgetService.getMonthlyBudget());

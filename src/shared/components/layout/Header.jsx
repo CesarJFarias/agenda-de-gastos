@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCurrentMonthYear } from '../../utils/formatters';
+import { getCurrentMonthYear } from '@/shared/utils/formatters';
 
 const NAV_ITEMS = [
   {

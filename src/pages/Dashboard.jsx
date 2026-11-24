@@ -1,15 +1,15 @@
 import React from 'react';
-import { Header } from '../components/layout/Header';
-import { Footer } from '../components/layout/Footer';
-import { SummaryCards } from '../components/dashboard/SummaryCards';
-import { ExpenseDistribution } from '../components/dashboard/ExpenseDistribution';
-import { BudgetSection } from '../components/dashboard/BudgetSection';
-import { TransactionForm } from '../components/transactions/TransactionForm';
-import { TransactionList } from '../components/transactions/TransactionList';
-import { useTransactions } from '../hooks/useTransactions';
-import { useTransactionFilters } from '../hooks/useTransactionFilters';
-import { useBudget } from '../hooks/useBudget';
-import { exportTransactionsToCSV, getCurrentMonthYear } from '../utils/formatters';
+import { Header } from '@/shared/components/layout/Header';
+import { Footer } from '@/shared/components/layout/Footer';
+import { exportTransactionsToCSV, getCurrentMonthYear } from '@/shared/utils/formatters';
+import { SummaryCards } from '@/features/dashboard/components/SummaryCards';
+import { ExpenseDistribution } from '@/features/dashboard/components/ExpenseDistribution';
+import { BudgetSection } from '@/features/budget/components/BudgetSection';
+import { useBudget } from '@/features/budget/hooks/useBudget';
+import { TransactionForm } from '@/features/transactions/components/TransactionForm';
+import { TransactionList } from '@/features/transactions/components/TransactionList';
+import { useTransactions } from '@/features/transactions/hooks/useTransactions';
+import { useTransactionFilters } from '@/features/transactions/hooks/useTransactionFilters';
 
 export function Dashboard() {
   const { transactions, loading, error, metrics, isCloudActive, addTransaction, deleteTransaction } =

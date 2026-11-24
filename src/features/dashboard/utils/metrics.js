@@ -1,4 +1,4 @@
-import { TRANSACTION_TYPES } from '../constants/categories';
+import { TRANSACTION_TYPES } from '@/shared/constants/categories';
 
 export const calculateMetrics = (transactions) => {
   const incomeItems = transactions.filter((t) => t.type === TRANSACTION_TYPES.INCOME);

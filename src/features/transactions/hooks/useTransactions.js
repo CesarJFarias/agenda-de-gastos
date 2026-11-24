@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { transactionService } from '../services/transactionService';
-import { formatDisplayDate } from '../utils/formatters';
-import { calculateMetrics } from '../utils/metrics';
+import { transactionService } from '@/features/transactions/services/transactionService';
+import { formatDisplayDate } from '@/shared/utils/formatters';
+import { calculateMetrics } from '@/features/dashboard/utils/metrics';
 
 const CLOUD_ERROR = 'No se pudieron cargar los movimientos desde la nube. Verifica tu conexión o configuración de Supabase.';
 const LOCAL_ERROR = 'No se pudieron cargar los movimientos guardados en este navegador.';

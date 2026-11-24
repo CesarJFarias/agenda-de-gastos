@@ -1,4 +1,4 @@
-import { supabase, isSupabaseConfigured } from '../config/supabase';
+import { supabase, isSupabaseConfigured } from '@/shared/lib/supabase';
 
 const LOCAL_STORAGE_KEY = 'finances_data';
 

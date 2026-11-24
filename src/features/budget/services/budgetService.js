@@ -1,4 +1,4 @@
-import { DEFAULT_MONTHLY_BUDGET } from '../constants/categories';
+import { DEFAULT_MONTHLY_BUDGET } from '@/shared/constants/categories';
 
 const BUDGET_STORAGE_KEY = 'user_monthly_budget';
 

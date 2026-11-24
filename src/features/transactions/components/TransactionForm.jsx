@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TRANSACTION_CATEGORIES } from '../../constants/categories';
-import { getTodayISODate } from '../../utils/formatters';
+import { TRANSACTION_CATEGORIES } from '@/shared/constants/categories';
+import { getTodayISODate } from '@/shared/utils/formatters';
 
 export function TransactionForm({ onAdd }) {
   const [type, setType] = useState('ingreso');
