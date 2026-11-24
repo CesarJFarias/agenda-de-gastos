@@ -13,7 +13,7 @@ El proyecto utiliza tecnologías modernas optimizadas para rendimiento, segurida
 - **React 18**: Biblioteca base orientada a componentes modulares, hooks personalizados y renderizado declarativo.
 - **Vite 6**: Herramienta de compilación y empaquetado de alta velocidad para entornos modernos de JavaScript.
 - **Tailwind CSS 3**: Framework de diseño utilitario para interfaces consistentes, responsivas y accesibles.
-- **Font Awesome & Lucide**: Sistema iconográfico para categorización visual de transacciones.
+- **Material Symbols (Google Fonts)**: Sistema iconográfico para categorización visual de transacciones.
 
 ### Backend y Persistencia
 
